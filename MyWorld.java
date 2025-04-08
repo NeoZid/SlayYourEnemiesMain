@@ -10,7 +10,6 @@ public class MyWorld extends World
 {
     private GreenfootSound gameMusic;
     
-    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -23,8 +22,6 @@ public class MyWorld extends World
         getBackground().fill();
         gameMusic = new GreenfootSound("boss_battle_#2.WAV");
         prepare();
-        
-        
     }
     
     /**
@@ -43,7 +40,6 @@ public class MyWorld extends World
 
         Sharruth1 sharruth1 = new Sharruth1();
         addObject(sharruth1,640,284);
-        sharruth1.setLocation(626,525);
         sharruth1.setLocation(585,379);
         Elora elora = new Elora();
         addObject(elora,75,594);

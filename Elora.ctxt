@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.target=Elora
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Elora\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Player\ character\ for\ Slay\ Your\ Enemies\ game.\ She\ must\ climb\ the\ tower\ to\ \r\n\ save\ the\ princess\ from\ the\ evil\ dragon.\ Player\ controls\ her\ movements\ and\r\n\ guides\ her\ to\ the\ top\r\n\ \r\n\ @author\ Chloe\ Castrataro\r\n\ @version\ 04/04/2025\r\n
 comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Elora\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.target=Elora()
 comment2.params=
-comment2.target=void\ move()
-numComments=3
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Knight\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment3.params=
+comment3.target=void\ move()
+numComments=4

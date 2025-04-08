@@ -1,25 +1,31 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Elora here.
+ * Player character for Slay Your Enemies game. She must climb the tower to 
+ * save the princess from the evil dragon. Player controls her movements and
+ * guides her to the top
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Chloe Castrataro
+ * @version 04/04/2025
  */
 public class Elora extends Actor
-{
+{   
+    public Elora()
+    {
+        
+    }
+    
     /**
-     * Act - do whatever the Elora wants to do. This method is called whenever
+     * Act - do whatever the Knight wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
         move();
-        
     }
-    
-    public void move(){
-        
+
+    public void move()
+    {
         if(Greenfoot.isKeyDown("a")) {
             move(-6);
         }
@@ -27,6 +33,4 @@ public class Elora extends Actor
             move(6);
         }
     }
-    
-    
 }
