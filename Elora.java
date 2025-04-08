@@ -21,10 +21,10 @@ public class Elora extends Actor
     public void move(){
         
         if(Greenfoot.isKeyDown("a")) {
-            move(-5);
+            move(-6);
         }
         if(Greenfoot.isKeyDown("d")) {
-            move(5);
+            move(6);
         }
     }
     
