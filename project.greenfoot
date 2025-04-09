@@ -6,7 +6,11 @@ class.GameOver.image=castle_night.jpeg.jpg
 class.Goblin.image=goblinidle1.png
 class.HeartAnimated.image=heart1.png
 class.Introduction.image=Untitled\ design.png
+<<<<<<< HEAD
 class.Level1.image=Level1v1.png
+=======
+class.Level1.image=Level1.png
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
 class.Platform.image=grass-platform-better.png
 class.PlayButton.image=playbutton.png
 class.Rhiannon.image=princess_placeholder_115px.png
@@ -16,6 +20,7 @@ class.TutorialButton.image=tutorialbutton.png
 dependency1.from=GameOver
 dependency1.to=SharruthWon
 dependency1.type=UsesDependency
+<<<<<<< HEAD
 dependency10.from=Level1
 dependency10.to=Goblin
 dependency10.type=UsesDependency
@@ -76,6 +81,47 @@ editor.fx.0.x=368
 editor.fx.0.y=52
 height=881
 package.numDependencies=19
+=======
+dependency10.from=Sharruth1
+dependency10.to=GameOver
+dependency10.type=UsesDependency
+dependency11.from=Sharruth1
+dependency11.to=Ground
+dependency11.type=UsesDependency
+dependency12.from=Sharruth1
+dependency12.to=Elora
+dependency12.type=UsesDependency
+dependency2.from=Level1
+dependency2.to=Elora
+dependency2.type=UsesDependency
+dependency3.from=MyWorld
+dependency3.to=Platform
+dependency3.type=UsesDependency
+dependency4.from=MyWorld
+dependency4.to=Sharruth1
+dependency4.type=UsesDependency
+dependency5.from=MyWorld
+dependency5.to=Elora
+dependency5.type=UsesDependency
+dependency6.from=MyWorld
+dependency6.to=Rhiannon
+dependency6.type=UsesDependency
+dependency7.from=SharruthWon
+dependency7.to=Ground
+dependency7.type=UsesDependency
+dependency8.from=Fireball
+dependency8.to=Elora
+dependency8.type=UsesDependency
+dependency9.from=Sharruth1
+dependency9.to=Fireball
+dependency9.type=UsesDependency
+editor.fx.0.height=739
+editor.fx.0.width=816
+editor.fx.0.x=803
+editor.fx.0.y=202
+height=901
+package.numDependencies=12
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
 package.numTargets=17
 project.charset=UTF-8
 publish.hasSource=false
@@ -134,21 +180,33 @@ target14.width=120
 target14.x=0
 target14.y=0
 target15.height=70
+<<<<<<< HEAD
 target15.name=Level2
+=======
+target15.name=PlayButton
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
 target15.showInterface=false
 target15.type=ClassTarget
 target15.width=120
 target15.x=0
 target15.y=0
 target16.height=70
+<<<<<<< HEAD
 target16.name=PlayButton
+=======
+target16.name=Level1
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
 target16.showInterface=false
 target16.type=ClassTarget
 target16.width=120
 target16.x=0
 target16.y=0
 target17.height=70
+<<<<<<< HEAD
 target17.name=Level1
+=======
+target17.name=MyWorld
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
 target17.showInterface=false
 target17.type=ClassTarget
 target17.width=120
@@ -212,6 +270,12 @@ target9.x=0
 target9.y=0
 version=3.1.0
 width=1189
+<<<<<<< HEAD
 world.lastInstantiated=Introduction
 xPosition=159
 yPosition=2
+=======
+world.lastInstantiated=MyWorld
+xPosition=700
+yPosition=97
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15

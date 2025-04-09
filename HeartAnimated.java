@@ -28,6 +28,7 @@ public class HeartAnimated extends Actor
      */
     public void act()
     {
+<<<<<<< HEAD
             if (getImage() == heart1) 
             {
                 setImage(heart2);
@@ -44,5 +45,8 @@ public class HeartAnimated extends Actor
             {
                 setImage(heart1);
             }
+=======
+    
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
     }
 }

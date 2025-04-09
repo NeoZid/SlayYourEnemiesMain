@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Goblin extends Actor
 {
+<<<<<<< HEAD
     
     public Goblin()
     {
@@ -15,6 +16,8 @@ public class Goblin extends Actor
         image.scale(image.getWidth() *2, image.getHeight() *2);
         setImage(image);
     }
+=======
+>>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
     /**
      * Act - do whatever the Goblin wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
