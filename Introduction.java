@@ -39,14 +39,11 @@ public class Introduction extends World
         addObject(tutorialButton,619,565);
         tutorialButton.setLocation(621,532);
         playButton.setLocation(619,479);
-<<<<<<< HEAD
         HeartAnimated heartAnimated = new HeartAnimated();
         addObject(heartAnimated,725,298);
         HeartAnimated heartAnimated2 = new HeartAnimated();
         addObject(heartAnimated2,59,148);
         HeartAnimated heartAnimated3 = new HeartAnimated();
         addObject(heartAnimated3,125,365);
-=======
->>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
     }
 }

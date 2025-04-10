@@ -39,21 +39,13 @@ public class Level1 extends World
         addObject(goblin4,453,346);
         Door door = new Door();
         addObject(door,50,325);
-<<<<<<< HEAD
-        elora.setLocation(51,600);
-        door.setLocation(35,96);
-        goblin.setLocation(284,600);
-        goblin4.setLocation(450,196);
-        goblin3.setLocation(205,99);
-        goblin2.setLocation(736,451);
-=======
-        door.setLocation(50,300);
-        elora.setLocation(20,640);
-        goblin4.setLocation(523,565);
-        goblin2.setLocation(661,477);
-        goblin3.setLocation(231,315);
-        goblin.setLocation(222,641);
->>>>>>> d4d9b6ae1ed8a5fdd5ae2bd5a84e0b72253bad15
+        door.setLocation(25,98);
+        goblin3.setLocation(217,104);
+        elora.setLocation(48,602);
+        goblin4.setLocation(298,413);
+        goblin2.setLocation(718,455);
+        door.setLocation(33,94);
+        goblin.setLocation(310,604);
     }
     
      public void started()
