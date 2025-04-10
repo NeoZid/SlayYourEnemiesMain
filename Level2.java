@@ -8,19 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level2 extends World
 {
-    private GreenfootSound gameMusic;
-    
+    private GreenfootSound gfs_level2;
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class Level2.
      * 
      */
     public Level2()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 700, 1); 
-        getBackground().setColor(new Color(70, 0, 255));
-        getBackground().fill();
-        gameMusic = new GreenfootSound("boss_battle_#2.WAV");
+        gfs_level2 = new GreenfootSound("Level3.wav");
         prepare();
     }
     
@@ -30,28 +26,45 @@ public class Level2 extends World
      */
     private void prepare()
     {
-
-        Platform platform = new Platform();
-        addObject(platform,141,674);
-        Platform platform2 = new Platform();
-        addObject(platform2,427,674);
-        Platform platform3 = new Platform();
-        addObject(platform3,716,674);
-
-        Sharruth1 sharruth1 = new Sharruth1();
-        addObject(sharruth1,640,284);
-        sharruth1.setLocation(585,379);
+        RockyPlatform rockyPlatform = new RockyPlatform();
+        addObject(rockyPlatform,373,447);
+        RockyPlatform rockyPlatform2 = new RockyPlatform();
+        addObject(rockyPlatform2,628,334);
+        RockyPlatform rockyPlatform3 = new RockyPlatform();
+        addObject(rockyPlatform3,588,155);
+        RockyPlatform rockyPlatform4 = new RockyPlatform();
+        addObject(rockyPlatform4,550,54);
+        Door door = new Door();
+        addObject(door,555,51);
+        door.setLocation(491,70);
+        rockyPlatform4.setLocation(552,136);
+        rockyPlatform3.setLocation(768,274);
+        rockyPlatform2.setLocation(474,373);
+        Goblin goblin = new Goblin();
+        addObject(goblin,536,334);
+        goblin.setLocation(488,316);
+        Goblin goblin2 = new Goblin();
+        addObject(goblin2,321,602);
+        goblin2.setLocation(336,607);
+        Goblin goblin3 = new Goblin();
+        addObject(goblin3,608,100);
+        goblin3.setLocation(616,86);
+        Goblin goblin4 = new Goblin();
+        addObject(goblin4,656,609);
+        goblin4.setLocation(668,614);
         Elora elora = new Elora();
-        addObject(elora,75,594);
-        Rhiannon rhiannon = new Rhiannon();
-        addObject(rhiannon,768,597);
+        addObject(elora,59,601);
+        elora.setLocation(58,602);
+        rockyPlatform.setLocation(232,467);
     }
     
-    public void started(){
-        gameMusic.playLoop();
+     public void started()
+    {
+        gfs_level2.playLoop();
     }
     
-    public void stopped(){
-        gameMusic.stop();
+     public void stopped()
+    {
+        gfs_level2.stop();
     }
 }

@@ -19,7 +19,7 @@ public class GameOver extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 700, 1); 
-        showTextWithBigBlackFont("Game over", 400, 350);
+        showTextWithBigBlackFont("Game Over", 400, 350);
         gameLost = new GreenfootSound("Steeps _of_Destiny.mp3");
         prepare();
     }
@@ -30,9 +30,11 @@ public class GameOver extends World
      */
     private void prepare()
     {
-
         SharruthWon sharruthWon = new SharruthWon();
         addObject(sharruthWon,429,461);
+        MenuButton menuButton = new MenuButton();
+        addObject(menuButton,117,507);
+        menuButton.setLocation(119,64);
     }
     
     public void showTextWithBigBlackFont(String message,int centerX, int centerY)

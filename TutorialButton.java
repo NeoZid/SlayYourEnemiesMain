@@ -28,7 +28,9 @@ public class TutorialButton extends Actor
     
     public void transitionTutorial()
     {
+        getWorld().stopped();
         World tutorial = new Tutorial();
+        tutorial.started();
         Greenfoot.setWorld(tutorial);
     }
 }
