@@ -10,10 +10,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elora extends Actor
 {   
-    public Elora()
-    {
-        
-    }
+    private int shootTimer = 0;
+    private int stability = 50;
     
     /**
      * Act - do whatever the Knight wants to do. This method is called whenever
@@ -32,5 +30,27 @@ public class Elora extends Actor
         if(Greenfoot.isKeyDown("d")) {
             move(6);
         }
+    }
+    
+    public void shoot()
+    {
+        Arrow arrow = new Arrow();
+        getWorld().addObject(arrow, getX(), getY());
+    }
+    
+    public void hit(int damage)
+    {
+        stability = stability - damage;
+        if(stability <=0) {
+            transitionToGameOver();
+        }
+    }
+    
+    public void transitionToGameOver()
+    {
+        getWorld().stopped();
+        World gameOver =  new  GameOver();
+        gameOver.started();
+        Greenfoot.setWorld(gameOver);
     }
 }

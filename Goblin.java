@@ -5,6 +5,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Goblin extends Actor
 {
+    private int stability = 30;
+    
     GreenfootImage image1;
     GreenfootImage image2;
     GreenfootImage image3;
@@ -64,6 +66,14 @@ public class Goblin extends Actor
 
             getImage().scale(100, 120); 
             animationDelay = 0;
+        }
+    }
+    
+    public void hit(int damage)
+    {
+        stability = stability - damage;
+        if (stability <=0) {
+            getWorld().removeObject(this);
         }
     }
 }

@@ -33,6 +33,5 @@ public class Fireball extends Actor
         }
     }
     
-    
 }
 
