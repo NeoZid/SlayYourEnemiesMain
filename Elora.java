@@ -20,6 +20,7 @@ public class Elora extends Actor
     public void act()
     {
         move();
+        checkKeys();
     }
 
     public void move()
@@ -34,8 +35,21 @@ public class Elora extends Actor
     
     public void shoot()
     {
-        Arrow arrow = new Arrow();
-        getWorld().addObject(arrow, getX(), getY());
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if(mouse == null) return; {
+            int x = mouse.getX();
+            int y = mouse.getY();
+            Arrow arrow = new Arrow();
+            getWorld().addObject(arrow, getX(), getY());
+            arrow.turnTowards(x, y);
+        }
+    }
+    
+    public void checkKeys()
+    {
+        if(Greenfoot.mouseClicked(null)) {
+            shoot();
+        }
     }
     
     public void hit(int damage)

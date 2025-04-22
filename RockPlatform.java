@@ -6,9 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class RockyPlatform extends Actor
+public class RockPlatform extends Ground
 {
-    public RockyPlatform()
+    public RockPlatform()
     {
         GreenfootImage image= getImage();
         image.scale(image.getWidth() /3, image.getHeight() /3);

@@ -26,13 +26,13 @@ public class Level2 extends World
      */
     private void prepare()
     {
-        RockyPlatform rockyPlatform = new RockyPlatform();
+        RockPlatform rockyPlatform = new RockPlatform();
         addObject(rockyPlatform,373,447);
-        RockyPlatform rockyPlatform2 = new RockyPlatform();
+        RockPlatform rockyPlatform2 = new RockPlatform();
         addObject(rockyPlatform2,628,334);
-        RockyPlatform rockyPlatform3 = new RockyPlatform();
+        RockPlatform rockyPlatform3 = new RockPlatform();
         addObject(rockyPlatform3,588,155);
-        RockyPlatform rockyPlatform4 = new RockyPlatform();
+        RockPlatform rockyPlatform4 = new RockPlatform();
         addObject(rockyPlatform4,550,54);
         Door door = new Door();
         addObject(door,555,51);
