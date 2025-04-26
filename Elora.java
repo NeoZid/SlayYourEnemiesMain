@@ -11,7 +11,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Elora extends Actor
 {   
     private int shootTimer = 0;
-    private int stability = 50;
+    private int stability = 60;
+    private int vSpeed = 0;
+    private int jumpStrength = -15;
+    private int gravity = 1;
     
     /**
      * Act - do whatever the Knight wants to do. This method is called whenever
@@ -20,7 +23,16 @@ public class Elora extends Actor
     public void act()
     {
         move();
-        checkKeys();
+        
+        vSpeed += gravity;
+        setLocation(getX(), getY() + vSpeed);
+        
+        jump();
+        checkGround();
+        
+        if(Greenfoot.isKeyDown("space")) {
+            shoot();
+        }
     }
 
     public void move()
@@ -33,23 +45,36 @@ public class Elora extends Actor
         }
     }
     
-    public void shoot()
+    public void jump()
     {
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if(mouse == null) return; {
-            int x = mouse.getX();
-            int y = mouse.getY();
-            Arrow arrow = new Arrow();
-            getWorld().addObject(arrow, getX(), getY());
-            arrow.turnTowards(x, y);
+        if(Greenfoot.isKeyDown("w")) {
+            vSpeed = jumpStrength;
         }
     }
     
-    public void checkKeys()
+    public void falling()
     {
-        if(Greenfoot.mouseClicked(null)) {
-            shoot();
+        if(vSpeed > 0) {
+            setLocation(getX(), getY() + vSpeed);
         }
+    }
+    
+    public void checkGround()
+    {
+       if(isTouching(Ground.class) && vSpeed >0) {
+           setLocation(getX(), getY() - 1);
+           vSpeed = 0;
+       }
+       else {
+           falling();
+       }
+    }
+    
+    public void shoot()
+    {
+        Arrow arrow = new Arrow();
+        getWorld().addObject(arrow, getX(), getY());
+        arrow.setRotation(getRotation());
     }
     
     public void hit(int damage)
@@ -58,6 +83,11 @@ public class Elora extends Actor
         if(stability <=0) {
             transitionToGameOver();
         }
+    }
+    
+    public int getStability()
+    {
+        return this.stability;
     }
     
     public void transitionToGameOver()

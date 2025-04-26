@@ -46,6 +46,36 @@ public class Level1 extends World
         goblin2.setLocation(718,455);
         door.setLocation(33,94);
         goblin.setLocation(310,604);
+        CastlePlatform castlePlatform = new CastlePlatform();
+        addObject(castlePlatform,452,267);
+        CastlePlatform castlePlatform2 = new CastlePlatform();
+        addObject(castlePlatform2,615,423);
+        CastlePlatform castlePlatform3 = new CastlePlatform();
+        addObject(castlePlatform3,722,521);
+        CastlePlatform castlePlatform4 = new CastlePlatform();
+        addObject(castlePlatform4,74,680);
+        CastlePlatform castlePlatform5 = new CastlePlatform();
+        addObject(castlePlatform5,231,678);
+        CastlePlatform castlePlatform6 = new CastlePlatform();
+        addObject(castlePlatform6,358,676);
+        CastlePlatform castlePlatform7 = new CastlePlatform();
+        addObject(castlePlatform7,79,182);
+        CastlePlatform castlePlatform8 = new CastlePlatform();
+        addObject(castlePlatform8,235,181);
+        castlePlatform2.setLocation(587,423);
+        CastlePlatform castlePlatform9 = new CastlePlatform();
+        addObject(castlePlatform9,80,481);
+        CastlePlatform castlePlatform10 = new CastlePlatform();
+        addObject(castlePlatform10,236,480);
+        CastlePlatform castlePlatform11 = new CastlePlatform();
+        addObject(castlePlatform11,317,480);
+        CastlePlatform castlePlatform12 = new CastlePlatform();
+        addObject(castlePlatform12,591,670);
+        CastlePlatform castlePlatform13 = new CastlePlatform();
+        addObject(castlePlatform13,648,620);
+        castlePlatform13.setLocation(631,624);
+        HealthBar healthBar = new HealthBar();
+        addObject(healthBar,636,90);
     }
     
      public void started()

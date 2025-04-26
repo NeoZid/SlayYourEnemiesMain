@@ -13,13 +13,15 @@ public class HeartAnimated extends Actor
     GreenfootImage heart3;
     GreenfootImage heart4;
     
+    private int animationDelay = 5;
+    
     public HeartAnimated()
     {
         heart1 = new GreenfootImage("heart1.png");
-        heart2 = new GreenfootImage("heart2.png");
         heart3 = new GreenfootImage("heart3.png");
         heart4 = new GreenfootImage("heart4.png");
         setImage(heart1);
+        
     }
     
     /**
@@ -28,20 +30,19 @@ public class HeartAnimated extends Actor
      */
     public void act()
     {
-            if (getImage() == heart1) 
-            {
-                setImage(heart2);
-            }
-            else if (getImage() == heart2) 
-            {
+        animateHeart();
+        }
+        
+    public void animateHeart()
+    {
+        animationDelay++;
+        if (animationDelay >= 5) 
+        {
+            if (getImage() == heart1) {
                 setImage(heart3);
-            }
-            else if (getImage() == heart3) 
-            {
+            } else if (getImage() == heart3) {
                 setImage(heart4);
-            }
-            else if (getImage() == heart4) 
-            {
+            } else if(getImage() == heart4)
                 setImage(heart1);
             }
     }

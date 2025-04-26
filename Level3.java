@@ -44,6 +44,8 @@ public class Level3 extends World
         addObject(elora,75,594);
         Rhiannon rhiannon = new Rhiannon();
         addObject(rhiannon,768,597);
+        HealthBar healthBar = new HealthBar();
+        addObject(healthBar,80,99);
     }
     
     public void started(){

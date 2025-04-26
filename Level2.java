@@ -56,6 +56,21 @@ public class Level2 extends World
         addObject(elora,59,601);
         elora.setLocation(58,602);
         rockyPlatform.setLocation(232,467);
+        RockPlatform rockPlatform5 = new RockPlatform();
+        addObject(rockPlatform5,336,676);
+        rockPlatform5.setLocation(83,665);
+        RockPlatform rockPlatform6 = new RockPlatform();
+        addObject(rockPlatform6,504,681);
+        rockPlatform6.setLocation(272,667);
+        RockPlatform rockPlatform7 = new RockPlatform();
+        addObject(rockPlatform7,633,671);
+        rockPlatform7.setLocation(472,667);
+        goblin4.setLocation(709,670);
+        RockPlatform rockPlatform8 = new RockPlatform();
+        addObject(rockPlatform8,709,670);
+        rockPlatform8.setLocation(700,664);
+        HealthBar healthBar = new HealthBar();
+        addObject(healthBar,77,146);
     }
     
      public void started()
