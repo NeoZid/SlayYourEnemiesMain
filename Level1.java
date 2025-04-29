@@ -87,5 +87,24 @@ public class Level1 extends World
     {
         gfs_Level1.stop();
     }
+    
+    public boolean levelDone(){
+        if (getObjects(Goblin.class).isEmpty()) {
+            return true; 
+        } else {
+            return false;
+        }
+    }
+    
+    public void levelUp()
+    {
+        Door door = new Door();
+        if(levelDone() && door.eloraAtDoor()) {
+            stopped();
+            World level2 =  new Level2();
+            level2.started();
+            Greenfoot.setWorld(level2);
+        }
+    }
 }
 
