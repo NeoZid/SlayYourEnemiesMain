@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Goblin extends Actor
 {
-    private int stability = 30;
+    private int damage;
     
     GreenfootImage image1;
     GreenfootImage image2;
@@ -16,7 +16,7 @@ public class Goblin extends Actor
     private int maxSteps = 90; 
     private int stepSize = 1; 
 
-    private int animationDelay = 0; 
+    private int animationDelay = 0;
 
     public Goblin()
     {
@@ -26,12 +26,15 @@ public class Goblin extends Actor
 
         setImage(image1);
         getImage().scale(100, 120);
+        
+        damage = 0;
     }
 
     public void act()
     {
         moveGoblin();
         animateGoblin();
+        takeHit();
     }
 
     private void moveGoblin()
@@ -69,11 +72,18 @@ public class Goblin extends Actor
         }
     }
     
-    public void hit(int damage)
+    public void takeHit()
     {
-        stability = stability - damage;
-        if (stability <=0) {
-            getWorld().removeObject(this);
+        if(isTouching(Arrow.class)) {
+            removeTouching(Arrow.class);
+            damage = damage + 1;
+            if(damage >= 3) {
+                getWorld().removeObject(this);
+                if(Greenfoot.getRandomNumber(100) < 25) {
+                    
+                }
+            }
         }
     }
+
 }

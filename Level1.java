@@ -10,6 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Level1 extends World
 {
     GreenfootSound gfs_Level1;
+    Door door = new Door();
     /**
      * Constructor for objects of class Level1.
      * 
@@ -17,8 +18,11 @@ public class Level1 extends World
     public Level1()
     {    
         super(800, 700, 1);
+        door.setLocation(36,96);
         gfs_Level1= new GreenfootSound("level1.wav");
         prepare();
+        levelDone();
+        levelUp();
     }
     
     /**
@@ -37,14 +41,10 @@ public class Level1 extends World
         addObject(goblin3,220,353);
         Goblin goblin4 = new Goblin();
         addObject(goblin4,453,346);
-        Door door = new Door();
-        addObject(door,50,325);
-        door.setLocation(25,98);
         goblin3.setLocation(217,104);
         elora.setLocation(48,602);
         goblin4.setLocation(298,413);
         goblin2.setLocation(718,455);
-        door.setLocation(33,94);
         goblin.setLocation(310,604);
         CastlePlatform castlePlatform = new CastlePlatform();
         addObject(castlePlatform,452,267);
@@ -76,6 +76,9 @@ public class Level1 extends World
         castlePlatform13.setLocation(631,624);
         HealthBar healthBar = new HealthBar();
         addObject(healthBar,636,90);
+        Door door = new Door();
+        addObject(door,36,96);
+        door.setLocation(36,96);
     }
     
      public void started()
@@ -98,7 +101,6 @@ public class Level1 extends World
     
     public void levelUp()
     {
-        Door door = new Door();
         if(levelDone() && door.eloraAtDoor()) {
             stopped();
             World level2 =  new Level2();

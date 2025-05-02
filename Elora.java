@@ -10,11 +10,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elora extends Actor
 {   
-    private int shootTimer = 0;
     private int stability = 60;
     private int vSpeed = 0;
     private int jumpStrength = -15;
     private int gravity = 1;
+    private boolean spaceKeyDown;
+    private int damage= 0;
     
     /**
      * Act - do whatever the Knight wants to do. This method is called whenever
@@ -29,9 +30,12 @@ public class Elora extends Actor
         
         jump();
         checkGround();
-        
-        if(Greenfoot.isKeyDown("space")) {
-            shoot();
+        turning();
+        if(spaceKeyDown != Greenfoot.isKeyDown("space")) {
+            spaceKeyDown = !spaceKeyDown;
+            if (spaceKeyDown) {
+                shoot();
+            }
         }
     }
 
@@ -70,17 +74,30 @@ public class Elora extends Actor
        }
     }
     
+    public void turning() {
+        if(isAtEdge()) {
+            turn(180);
+            getImage().mirrorVertically();
+        }
+    }
+    
     public void shoot()
     {
-        Arrow arrow = new Arrow();
+        Arrow arrow = new Arrow(5);
         getWorld().addObject(arrow, getX(), getY());
         arrow.setRotation(getRotation());
     }
     
-    public void hit(int damage)
+    public void goblinHit()
     {
-        stability = stability - damage;
-        if(stability <=0) {
+        if(isTouching(Goblin.class)) {
+            damage = damage + 1;
+            if(damage >= 5) {
+                stability = 50;
+            }
+        }
+        
+        if(stability <= 0) {
             transitionToGameOver();
         }
     }
@@ -98,3 +115,4 @@ public class Elora extends Actor
         Greenfoot.setWorld(gameOver);
     }
 }
+

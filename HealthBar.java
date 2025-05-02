@@ -28,6 +28,7 @@ public class HealthBar extends Elora
        image2 = new GreenfootImage("2.png");
        image1 = new GreenfootImage("1.png"); 
        
+       getStability();
        damage();
     }
     
