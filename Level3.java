@@ -16,7 +16,7 @@ public class Level3 extends World
      */
     public Level3()
     {    
-        super(800, 700, 1); 
+        super(900, 700, 1); 
         getBackground().setColor(new Color(70, 0, 255));
         getBackground().fill();
         gameMusic = new GreenfootSound("boss_battle_#2.WAV");
