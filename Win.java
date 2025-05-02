@@ -18,7 +18,7 @@ public class Win extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 700, 1); 
         showTextWithBigBlackFont("You Win!", 180, 200);
-        gfs_GameOverWorld =  new  GreenfootSound("");
+        gfs_GameOverWorld =  new  GreenfootSound("level1.wav"); // the music here is only a placeholder, change it into the music you wanted to use -Neo
     }
     
     public void showTextWithBigBlackFont(String message, int x, int y)
@@ -35,9 +35,7 @@ public class Win extends World
         gfs_GameOverWorld.playLoop();
     }
 
-    /**
-     * 
-     */
+    
     public void stopped()
     {
         gfs_GameOverWorld.stop();

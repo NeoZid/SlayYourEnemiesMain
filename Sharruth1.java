@@ -23,10 +23,14 @@ public class Sharruth1 extends Actor
             shoot();
             shootTimer = 0;
         }
-        slayMc();
+        
         if (isGameLost()) {
             transitionToGameOver();        
         }
+        
+        if (isSharruthDown()) {
+            transitionToWin();
+        } 
         
         takeHit();
     }
@@ -39,7 +43,7 @@ public class Sharruth1 extends Actor
     }
     
     public void moveAround(){
-        move(-5);
+        move(-3);
         if(Greenfoot.getRandomNumber(10)==1) {
             turn(Greenfoot.getRandomNumber(90)-45); }
         if( isAtEdge()) {
@@ -49,19 +53,19 @@ public class Sharruth1 extends Actor
         }
     }
     
-    public void slayMc(){
-        Actor elora = getOneIntersectingObject(Elora.class);
-        if (elora != null) 
-        {
-            World world = getWorld();
-            world.removeObject(elora);
-        }
-    }
-    
     public boolean isGameLost(){
         World world = getWorld();
         if (world.getObjects(Elora.class).isEmpty()) {
             return true; 
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean isSharruthDown(){
+        World world = getWorld();
+        if (world.getObjects(Sharruth1.class).isEmpty()) {
+            return true;
         } else {
             return false;
         }
@@ -84,5 +88,12 @@ public class Sharruth1 extends Actor
         World gameOver =  new  GameOver();
         gameOver.started();
         Greenfoot.setWorld(gameOver);
+    }
+    
+    public void transitionToWin(){
+        getWorld().stopped();
+        World gameWin =  new  Win();
+        gameWin.started();
+        Greenfoot.setWorld(gameWin);
     }
 }

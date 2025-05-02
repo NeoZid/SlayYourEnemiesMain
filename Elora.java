@@ -17,6 +17,8 @@ public class Elora extends Actor
     private boolean spaceKeyDown;
     private int damage= 0;
     
+    GreenfootImage eloraAfk;
+    GreenfootImage eloraJump;
     /**
      * Act - do whatever the Knight wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -24,7 +26,7 @@ public class Elora extends Actor
     public void act()
     {
         move();
-        
+        fireballHit();
         vSpeed += gravity;
         setLocation(getX(), getY() + vSpeed);
         
@@ -37,6 +39,12 @@ public class Elora extends Actor
                 shoot();
             }
         }
+        
+        
+        
+        eloraAfk = new GreenfootImage("EloraPngAI.png");
+        eloraJump = new GreenfootImage("EloraJumpPngAI.png");
+        
     }
 
     public void move()
@@ -52,15 +60,19 @@ public class Elora extends Actor
     public void jump()
     {
         if(Greenfoot.isKeyDown("w")) {
+            setImage(eloraJump);
             vSpeed = jumpStrength;
+        } else {
+            setImage(eloraAfk);
         }
     }
     
     public void falling()
     {
         if(vSpeed > 0) {
+            setImage(eloraJump);
             setLocation(getX(), getY() + vSpeed);
-        }
+        } 
     }
     
     public void checkGround()
@@ -102,10 +114,23 @@ public class Elora extends Actor
         }
     }
     
+    public void fireballHit(){ // this method gives the fireball damage when Elora is touching the fireball, same code could be used for goblinHit maybe?
+        if (isTouching(Fireball.class)) {
+            removeTouching(Fireball.class);
+            damage = 10;
+            stability = stability - damage;
+            if (stability <= 0) 
+            {
+               transitionToGameOver(); 
+            }
+        }
+    }
+    
     public int getStability()
     {
         return this.stability;
     }
+    
     
     public void transitionToGameOver()
     {
@@ -114,5 +139,7 @@ public class Elora extends Actor
         gameOver.started();
         Greenfoot.setWorld(gameOver);
     }
+    
+    
 }
 

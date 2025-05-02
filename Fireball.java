@@ -19,19 +19,18 @@ public class Fireball extends Actor
     
     public void act()
     {
-        move(5);
-        checkCollision();
+        move(3);
         if(isAtEdge()) {
             getWorld().removeObject(this); } //removes fireball at edge
     }
     
-    public void checkCollision(){
-        Actor elora = getOneIntersectingObject(Elora.class);
-        if (elora != null) {
-            getWorld().removeObject(elora);
-            
-        }
-    }
     
+    public void transitionToGameOver()
+    {
+        getWorld().stopped();
+        World gameOver =  new  GameOver();
+        gameOver.started();
+        Greenfoot.setWorld(gameOver);
+    }
 }
 

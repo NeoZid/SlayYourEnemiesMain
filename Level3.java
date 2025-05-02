@@ -19,7 +19,7 @@ public class Level3 extends World
         super(900, 700, 1); 
         getBackground().setColor(new Color(70, 0, 255));
         getBackground().fill();
-        gameMusic = new GreenfootSound("boss_battle_#2.WAV");
+        gameMusic = new GreenfootSound("boss_battle_#2.WAV"); 
         prepare();
     }
     
@@ -44,6 +44,8 @@ public class Level3 extends World
         addObject(elora,75,594);
         Rhiannon rhiannon = new Rhiannon();
         addObject(rhiannon,768,597);
+        HealthBar healthBar = new HealthBar();
+        addObject(healthBar,51,40);
     }
     
     public void started(){
