@@ -20,17 +20,7 @@ public class Door extends Actor
      */
     public void act()
     {
-        eloraAtDoor();
+        
     }
     
-    public boolean eloraAtDoor()
-    {
-        Actor elora = getOneIntersectingObject(Elora.class);
-        if(elora != null){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 }

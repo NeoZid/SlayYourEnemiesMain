@@ -16,6 +16,8 @@ public class Elora extends Actor
     private int gravity = 1;
     private boolean spaceKeyDown;
     private int damage= 0;
+    private int triggerX1= 36;
+    private int triggerY1= 96;
     
     GreenfootImage eloraAfk;
     GreenfootImage eloraJump;
@@ -40,7 +42,11 @@ public class Elora extends Actor
             }
         }
         
+        levelUp1();
         
+        if(getWorld() instanceof Level2) {
+           levelUp2(); 
+        }
         
         eloraAfk = new GreenfootImage("EloraPngAI.png");
         eloraJump = new GreenfootImage("EloraJumpPngAI.png");
@@ -65,6 +71,7 @@ public class Elora extends Actor
         } else {
             setImage(eloraAfk);
         }
+        
     }
     
     public void falling()
@@ -77,19 +84,26 @@ public class Elora extends Actor
     
     public void checkGround()
     {
-       if(isTouching(Ground.class) && vSpeed >0) {
+       if(isTouching(Ground.class) && vSpeed > 0) {
            setLocation(getX(), getY() - 1);
            vSpeed = 0;
        }
-       else {
-           falling();
+        else {    
+            falling();
        }
     }
     
     public void turning() {
-        if(isAtEdge()) {
-            turn(180);
-            getImage().mirrorVertically();
+        boolean facingRight = true;
+        int margin = 5;
+        World world = getWorld();
+         if (getX() <= margin && facingRight) {
+            getImage().mirrorHorizontally();
+            facingRight = false;
+        } 
+        else if (getX() >= world.getWidth() - margin && !facingRight) {
+            getImage().mirrorHorizontally();
+            facingRight = true;
         }
     }
     
@@ -131,6 +145,44 @@ public class Elora extends Actor
         return this.stability;
     }
     
+    public boolean isAtDoor() 
+    {
+        Actor door = getOneIntersectingObject(Door.class);
+        if(door != null){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public boolean levelDone() 
+    {
+        if (getWorld().getObjects(Goblin.class).isEmpty()) {
+            return true; 
+        } else {
+            return false;
+        }
+    }
+    
+    public void levelUp1() {
+        if(isAtDoor() == true && levelDone() == true) {
+            getWorld().stopped();
+            World level2 =  new Level2();
+            level2.started();
+            Greenfoot.setWorld(level2);
+        }
+    }
+    
+    public void levelUp2()
+    {
+        if(isAtDoor() == true && levelDone() == true) {
+            getWorld().stopped();
+            World level3 =  new Level3();
+            level3.started();
+            Greenfoot.setWorld(level3);
+        }
+    }
     
     public void transitionToGameOver()
     {
@@ -139,7 +191,6 @@ public class Elora extends Actor
         gameOver.started();
         Greenfoot.setWorld(gameOver);
     }
-    
     
 }
 

@@ -35,6 +35,7 @@ public class Goblin extends Actor
         moveGoblin();
         animateGoblin();
         takeHit();
+        isDead();
     }
 
     private void moveGoblin()
@@ -49,7 +50,7 @@ public class Goblin extends Actor
             setLocation(getX() - stepSize, getY());
             stepsTaken--;
             if (stepsTaken <= 0) {
-                movingRight = true; 
+                movingRight = true;
             }
         }
     }
@@ -77,12 +78,17 @@ public class Goblin extends Actor
         if(isTouching(Arrow.class)) {
             removeTouching(Arrow.class);
             damage = damage + 1;
-            if(damage >= 3) {
-                getWorld().removeObject(this);
-                if(Greenfoot.getRandomNumber(100) < 25) {
-                    
-                }
             }
+    }
+    
+    public boolean isDead()
+    {
+        if(damage >=3) {
+            getWorld().removeObject(this);
+            return true;
+        }
+        else {
+            return false;
         }
     }
 

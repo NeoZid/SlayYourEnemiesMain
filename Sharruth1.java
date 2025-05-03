@@ -24,11 +24,11 @@ public class Sharruth1 extends Actor
             shootTimer = 0;
         }
         
-        if (isGameLost()) {
+        if (isGameLost() == true) {
             transitionToGameOver();        
         }
         
-        if (isSharruthDown()) {
+        if (isSharruthDown() == true) {
             transitionToWin();
         } 
         

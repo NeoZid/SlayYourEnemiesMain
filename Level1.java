@@ -11,6 +11,7 @@ public class Level1 extends World
 {
     GreenfootSound gfs_Level1;
     Door door = new Door();
+    
     /**
      * Constructor for objects of class Level1.
      * 
@@ -21,8 +22,6 @@ public class Level1 extends World
         door.setLocation(36,96);
         gfs_Level1= new GreenfootSound("level1.wav");
         prepare();
-        levelDone();
-        levelUp();
     }
     
     /**
@@ -46,8 +45,6 @@ public class Level1 extends World
         goblin4.setLocation(298,413);
         goblin2.setLocation(718,455);
         goblin.setLocation(310,604);
-        CastlePlatform castlePlatform = new CastlePlatform();
-        addObject(castlePlatform,452,267);
         CastlePlatform castlePlatform2 = new CastlePlatform();
         addObject(castlePlatform2,615,423);
         CastlePlatform castlePlatform3 = new CastlePlatform();
@@ -69,16 +66,24 @@ public class Level1 extends World
         addObject(castlePlatform10,236,480);
         CastlePlatform castlePlatform11 = new CastlePlatform();
         addObject(castlePlatform11,317,480);
-        CastlePlatform castlePlatform12 = new CastlePlatform();
-        addObject(castlePlatform12,591,670);
-        CastlePlatform castlePlatform13 = new CastlePlatform();
-        addObject(castlePlatform13,648,620);
-        castlePlatform13.setLocation(631,624);
         HealthBar healthBar = new HealthBar();
         addObject(healthBar,636,90);
         Door door = new Door();
         addObject(door,36,96);
         door.setLocation(36,96);
+        castlePlatform4.setLocation(62,671);
+        castlePlatform5.setLocation(192,668);
+        castlePlatform7.setLocation(64,165);
+        castlePlatform8.setLocation(222,164);
+        goblin2.setLocation(717,450);
+        castlePlatform3.setLocation(722,513);
+        goblin3.setLocation(218,101);
+        castlePlatform9.setLocation(44,463);
+        castlePlatform11.setLocation(331,466);
+        goblin4.setLocation(245,404);
+        castlePlatform6.setLocation(348,669);
+        castlePlatform10.setLocation(188,464);
+        castlePlatform2.setLocation(557,259);
     }
     
      public void started()
@@ -89,24 +94,6 @@ public class Level1 extends World
     public void stopped()
     {
         gfs_Level1.stop();
-    }
-    
-    public boolean levelDone(){
-        if (getObjects(Goblin.class).isEmpty()) {
-            return true; 
-        } else {
-            return false;
-        }
-    }
-    
-    public void levelUp()
-    {
-        if(levelDone() && door.eloraAtDoor()) {
-            stopped();
-            World level2 =  new Level2();
-            level2.started();
-            Greenfoot.setWorld(level2);
-        }
     }
 }
 
