@@ -5,37 +5,48 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Goblin extends Actor
 {
-    private int damage;
-    
     GreenfootImage image1;
     GreenfootImage image2;
     GreenfootImage image3;
-
+    GreenfootImage image4;
+    
     private boolean movingRight = true;
     private int stepsTaken = 0;
     private int maxSteps = 90; 
     private int stepSize = 1; 
 
     private int animationDelay = 0;
+    
+    private int health = 50;
+    private int damage = 10;
 
     public Goblin()
     {
         image1 = new GreenfootImage("goblinwalk1.png");
         image2 = new GreenfootImage("goblinwalk2.png");
         image3 = new GreenfootImage("goblinwalk3.png");
+        image4 = new GreenfootImage("goblinattack3.png");
 
         setImage(image1);
         getImage().scale(100, 120);
         
-        damage = 0;
+        setImage(image4);
+        getImage().scale(100, 120);
+        
     }
 
     public void act()
     {
         moveGoblin();
         animateGoblin();
-        takeHit();
-        isDead();
+        
+        if(isTouching(Elora.class)){
+            Elora elora = (Elora) getOneIntersectingObject(Elora.class);
+            if (elora != null) {
+                setImage(image4);
+                elora.takeDamage(damage, this);
+            }
+        }
     }
 
     private void moveGoblin()
@@ -73,23 +84,19 @@ public class Goblin extends Actor
         }
     }
     
-    public void takeHit()
-    {
-        if(isTouching(Arrow.class)) {
-            removeTouching(Arrow.class);
-            damage = damage + 1;
-            }
+    private void dropHeal(){
+        ExtraLife extralife = new ExtraLife();
+        getWorld().addObject(extralife, getX(), getY());
     }
     
-    public boolean isDead()
-    {
-        if(damage >=3) {
+    public void takeDamage(int amount){
+        health -= amount;
+        if (health <= 0) {
+            dropHeal();
             getWorld().removeObject(this);
-            return true;
-        }
-        else {
-            return false;
+            
         }
     }
+
 
 }

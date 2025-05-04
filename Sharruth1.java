@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Sharruth1 extends Actor
 {
     private int shootTimer = 0;
-    private int damage = 0;
+    private int health = 100;
     
     /**
      * Act - do whatever the Sharruth1 wants to do. This method is called whenever
@@ -32,7 +32,6 @@ public class Sharruth1 extends Actor
             transitionToWin();
         } 
         
-        takeHit();
     }
     
     public void shoot(){
@@ -71,14 +70,10 @@ public class Sharruth1 extends Actor
         }
     }
     
-    public void takeHit()
-    {
-        if(isTouching(Arrow.class)) {
-            removeTouching(Arrow.class);
-            damage = damage + 1;
-            if(damage >= 10) {
-                getWorld().removeObject(this);
-            }
+    public void takeDamage(int amount){
+        health -= amount;
+        if (health <= 0) {
+            getWorld().removeObject(this);
         }
     }
     

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level2 extends World
 {
-    public static GreenfootSound gfs_level2 = new GreenfootSound("Level3.wav");
+    
     /**
      * Constructor for objects of class Level2.
      * 
@@ -16,8 +16,18 @@ public class Level2 extends World
     public Level2()
     {    
         super(800, 700, 1); 
+        started();
         prepare();
     }
+    
+    public void started(){
+        MusicManager.play("Level3.wav");
+    }
+    
+    public void stopped(){
+        MusicManager.stop();
+    }
+    
     
     /**
      * Prepare the world for the start of the program.
@@ -51,9 +61,10 @@ public class Level2 extends World
         Goblin goblin4 = new Goblin();
         addObject(goblin4,656,609);
         goblin4.setLocation(668,614);
-        Elora elora = new Elora();
+        HealthBar bar = new HealthBar();
+        Elora elora = new Elora(bar);
+        addObject(bar,59,601);
         addObject(elora,59,601);
-        elora.setLocation(58,602);
         rockyPlatform.setLocation(232,467);
         RockPlatform rockPlatform5 = new RockPlatform();
         addObject(rockPlatform5,336,676);
@@ -68,15 +79,8 @@ public class Level2 extends World
         addObject(rockPlatform8,709,670);
         rockPlatform8.setLocation(678,660);
         goblin4.setLocation(668,600);
+        bar.setLocation(50,28);
     }
     
-     public void started()
-    {
-        gfs_level2.playLoop();
-    }
     
-    public void stopped()
-    {
-        gfs_level2.stop();
-    }
 }

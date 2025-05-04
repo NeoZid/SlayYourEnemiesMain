@@ -42,11 +42,12 @@ public class Tutorial extends World
         Platform platform2 = new Platform();
         addObject(platform2,218,263);
         platform2.setLocation(192,276);
-        Elora elora = new Elora();
+        HealthBar bar = new HealthBar();
+        Elora elora = new Elora(bar);
+        addObject(bar,73,585);
         addObject(elora,73,585);
         Goblin goblin = new Goblin();
         addObject(goblin,84,337);
-        elora.setLocation(83,602);
         Goblin goblin2 = new Goblin();
         addObject(goblin2,484,431);
         platform.setLocation(521,520);

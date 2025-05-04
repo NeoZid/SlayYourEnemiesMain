@@ -15,6 +15,10 @@ public class Rhiannon extends Actor
     public void act()
     {
         move();
+        
+        if (isSharruthDown()){
+            isTouchingElora();
+        }
     }
     
     public void move(){
@@ -23,5 +27,27 @@ public class Rhiannon extends Actor
         }
         if(Greenfoot.getRandomNumber(10)==1) {
             move(5); }
+    }
+    
+    public void isTouchingElora(){
+        if (isTouching(Elora.class)){
+            transitionToWin();
+        }
+    }
+    
+    public boolean isSharruthDown(){
+        World world = getWorld();
+        if (world.getObjects(Sharruth1.class).isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public void transitionToWin(){
+        getWorld().stopped();
+        World gameWin =  new  Win();
+        gameWin.started();
+        Greenfoot.setWorld(gameWin);
     }
 }

@@ -10,31 +10,48 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Elora extends Actor
 {   
-    private int stability = 60;
-    private int vSpeed = 0;
-    private int jumpStrength = -15;
-    private int gravity = 1;
-    private boolean spaceKeyDown;
-    private int damage= 0;
-    private int triggerX1= 36;
-    private int triggerY1= 96;
+    private GreenfootSound oofSfx =  new  GreenfootSound("damage.wav");
     
-    GreenfootImage eloraAfk;
-    GreenfootImage eloraJump;
-    /**
-     * Act - do whatever the Knight wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private int velocityY = 0;
+    private int gravity = 1;
+    private int jumpStrength = -15;
+    private boolean onGround = false;
+    private boolean spaceKeyDown;
+    private boolean facingRight = true;
+    private int damage = 0;
+    
+    private HealthBar healthBar;
+    private int currentStability = 60;
+    private int shootTimer = 0;
+    private int shootDelay = 20;
+    
+    
+    private int pushBackStrength = 50;
+    private boolean isBeingPushed = false;
+    private int pushbackCounter = 0;
+    private int pushbackDuration = 10;
+    
+    GreenfootImage eloraAfk = new GreenfootImage("EloraPngAI.png");
+    GreenfootImage eloraJump = new GreenfootImage("EloraJumpPngAI.png");
+    
+    public Elora(HealthBar bar){
+        this.healthBar = bar;
+    }
+    
     public void act()
     {
         move();
-        fireballHit();
-        vSpeed += gravity;
-        setLocation(getX(), getY() + vSpeed);
-        
-        jump();
+        applyGravity();
         checkGround();
-        turning();
+        heal();
+        if (shootTimer > 0) {
+            shootTimer--;
+        }
+        if (isBeingPushed) {
+            applyPushback();
+            
+        }
+        
         if(spaceKeyDown != Greenfoot.isKeyDown("space")) {
             spaceKeyDown = !spaceKeyDown;
             if (spaceKeyDown) {
@@ -42,145 +59,122 @@ public class Elora extends Actor
             }
         }
         
-        levelUp1();
-        
-        if(getWorld() instanceof Level2) {
-           levelUp2(); 
-        }
-        
-        eloraAfk = new GreenfootImage("EloraPngAI.png");
-        eloraJump = new GreenfootImage("EloraJumpPngAI.png");
         
     }
 
     public void move()
     {
         if(Greenfoot.isKeyDown("a")) {
-            move(-6);
+            setLocation(getX()-4, getY());
+            if (facingRight) {
+                flipImage();
+                facingRight = false;
+            }
         }
         if(Greenfoot.isKeyDown("d")) {
-            move(6);
+            setLocation(getX()+4, getY());
+            if (!facingRight) {
+                flipImage();
+                facingRight = true;
+            }
         }
+        if (Greenfoot.isKeyDown("w")) {
+            jump();
+        } 
+        
+    }
+    
+    public void takeDamage(int amount, Actor source){
+        currentStability -= amount;
+        currentStability = Math.max(0, currentStability);
+        healthBar.setStability(currentStability);
+        
+        if (oofSfx != null && !oofSfx.isPlaying()) {
+            oofSfx.play();
+        }
+        
+        pushBack(source);
+    }
+    
+    public void pushBack(Actor source){
+        if (!isBeingPushed) {
+            isBeingPushed = true;
+            pushbackCounter = pushbackDuration;
+            
+            int directionToSource = getX() - source.getX();
+            
+            if (directionToSource > 0){
+                setLocation(getX() + pushBackStrength, getY());
+            } else if (directionToSource < 0) {
+                setLocation(getX() - pushBackStrength, getY());
+            }
+        }
+    }
+    
+    public void applyPushback(){
+        if (pushbackCounter > 0) {
+            pushbackCounter--;
+        }
+        if (pushbackCounter == 0){
+            isBeingPushed = false;
+        }
+    }
+    
+    private void flipImage()
+    {
+        GreenfootImage image = getImage();
+        image.mirrorHorizontally();
+        setImage(image);
     }
     
     public void jump()
     {
-        if(Greenfoot.isKeyDown("w")) {
-            setImage(eloraJump);
-            vSpeed = jumpStrength;
-        } else {
-            setImage(eloraAfk);
-        }
-        
+        velocityY = jumpStrength;
+        onGround = false;
     }
-    
-    public void falling()
-    {
-        if(vSpeed > 0) {
-            setImage(eloraJump);
-            setLocation(getX(), getY() + vSpeed);
-        } 
+
+    public void applyGravity(){
+        setLocation(getX(), getY() + velocityY);
+        velocityY += gravity;
     }
     
     public void checkGround()
     {
-       if(isTouching(Ground.class) && vSpeed > 0) {
-           setLocation(getX(), getY() - 1);
-           vSpeed = 0;
-       }
-        else {    
-            falling();
-       }
-    }
-    
-    public void turning() {
-        boolean facingRight = true;
-        int margin = 5;
-        World world = getWorld();
-         if (getX() <= margin && facingRight) {
-            getImage().mirrorHorizontally();
-            facingRight = false;
-        } 
-        else if (getX() >= world.getWidth() - margin && !facingRight) {
-            getImage().mirrorHorizontally();
-            facingRight = true;
+       Actor ground = getOneObjectAtOffset(0, getImage().getHeight()/2, Ground.class);
+       
+       if (ground != null && velocityY >= 0) {
+           setLocation(getX(), ground.getY() - ground.getImage().getHeight()/2 - getImage().getHeight()/2);
+           velocityY = 0;
+           onGround = true;
+        } else if (getY() >= getWorld().getHeight()- getImage().getHeight()/2) {
+            velocityY = 0;
+            onGround = true;
+        } else {
+            onGround = false;
         }
     }
     
     public void shoot()
     {
-        Arrow arrow = new Arrow(5);
-        getWorld().addObject(arrow, getX(), getY());
-        arrow.setRotation(getRotation());
-    }
-    
-    public void goblinHit()
-    {
-        if(isTouching(Goblin.class)) {
-            damage = damage + 1;
-            if(damage >= 5) {
-                stability = 50;
-            }
-        }
+        if (shootTimer == 0) {
+            int arrowSpeed = facingRight ? 10 : -10;
+            int spawnOffset = facingRight ? 20 : -20;
         
-        if(stability <= 0) {
-            transitionToGameOver();
+        
+            Arrow arrow = new Arrow(arrowSpeed);
+            getWorld().addObject(arrow, getX() + spawnOffset, getY());
+        
+            shootTimer = shootDelay;
         }
     }
     
-    public void fireballHit(){ // this method gives the fireball damage when Elora is touching the fireball, same code could be used for goblinHit maybe?
-        if (isTouching(Fireball.class)) {
-            removeTouching(Fireball.class);
-            damage = 10;
-            stability = stability - damage;
-            if (stability <= 0) 
-            {
-               transitionToGameOver(); 
-            }
-        }
-    }
-    
-    public int getStability()
-    {
-        return this.stability;
-    }
-    
-    public boolean isAtDoor() 
-    {
-        Actor door = getOneIntersectingObject(Door.class);
-        if(door != null){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    
-    public boolean levelDone() 
-    {
-        if (getWorld().getObjects(Goblin.class).isEmpty()) {
-            return true; 
-        } else {
-            return false;
-        }
-    }
-    
-    public void levelUp1() {
-        if(isAtDoor() == true && levelDone() == true) {
-            getWorld().stopped();
-            World level2 =  new Level2();
-            level2.started();
-            Greenfoot.setWorld(level2);
-        }
-    }
-    
-    public void levelUp2()
-    {
-        if(isAtDoor() == true && levelDone() == true) {
-            getWorld().stopped();
-            World level3 =  new Level3();
-            level3.started();
-            Greenfoot.setWorld(level3);
+    private void heal(){
+        ExtraLife extralife = (ExtraLife) getOneIntersectingObject(ExtraLife.class);
+        if (extralife != null) {
+            currentStability += extralife.getHealAmount();
+            currentStability = Math.max(60, currentStability);
+            healthBar.setStability(currentStability);
+            getWorld().removeObject(extralife);
         }
     }
     
@@ -191,6 +185,6 @@ public class Elora extends Actor
         gameOver.started();
         Greenfoot.setWorld(gameOver);
     }
-    
+
 }
 

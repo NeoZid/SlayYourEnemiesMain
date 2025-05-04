@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameOver extends World
 {
-    private GreenfootSound gameLost;
+   
     
     
     /**
@@ -20,10 +20,16 @@ public class GameOver extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 700, 1); 
         showTextWithBigBlackFont("Game Over", 400, 350);
-        gameLost = new GreenfootSound("Steeps _of_Destiny.mp3");
         prepare();
     }
     
+    public void started(){
+        MusicManager.play("Steeps _of_Destiny.mp3");
+    }
+    
+    public void stopped(){
+        MusicManager.stop();
+    }
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -57,11 +63,5 @@ public class GameOver extends World
         bg.drawString(message, drawX, drawY);
     }
     
-    public void started(){
-        gameLost.playLoop();
-    }
     
-    public void stopped(){
-        gameLost.stop();
-    }
 }

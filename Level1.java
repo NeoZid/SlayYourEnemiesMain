@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level1 extends World
 {
-    public static GreenfootSound gfs_Level1 = new GreenfootSound("level1.wav");
+    
     Door door = new Door();
     
     /**
@@ -23,14 +23,26 @@ public class Level1 extends World
         prepare();
     }
     
+    public void started(){
+        MusicManager.play("level1.wav");
+    }
+    
+    public void stopped(){
+        MusicManager.stop();
+    }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
     private void prepare()
     {
-        Elora elora = new Elora();
-        addObject(elora,88,648);
+        HealthBar bar = new HealthBar();
+        Elora elora = new Elora(bar);
+        addObject(bar,56,594);
+        addObject(elora,56,594);
+        
+        
         Goblin goblin = new Goblin();
         addObject(goblin,259,650);
         Goblin goblin2 = new Goblin();
@@ -40,7 +52,7 @@ public class Level1 extends World
         Goblin goblin4 = new Goblin();
         addObject(goblin4,453,346);
         goblin3.setLocation(217,104);
-        elora.setLocation(48,602);
+
         goblin4.setLocation(298,413);
         goblin2.setLocation(718,455);
         goblin.setLocation(310,604);
@@ -65,8 +77,6 @@ public class Level1 extends World
         addObject(castlePlatform10,236,480);
         CastlePlatform castlePlatform11 = new CastlePlatform();
         addObject(castlePlatform11,317,480);
-        HealthBar healthBar = new HealthBar();
-        addObject(healthBar,636,90);
         Door door = new Door();
         addObject(door,36,96);
         door.setLocation(36,96);
@@ -83,16 +93,8 @@ public class Level1 extends World
         castlePlatform6.setLocation(348,669);
         castlePlatform10.setLocation(188,464);
         castlePlatform2.setLocation(557,259);
+        bar.setLocation(50,28);
     }
     
-     public void started()
-    {
-        gfs_Level1.playLoop();
-    }
-    
-    public void stopped()
-    {
-        gfs_Level1.stop();
-    }
 }
 

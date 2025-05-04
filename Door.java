@@ -14,13 +14,42 @@ public class Door extends Actor
         image.scale(image.getWidth() /3, image.getHeight() /3);
         setImage(image);
     }
-    /**
-     * Act - do whatever the Door wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
+    
+    private boolean isOpen = false;
+
     public void act()
     {
+        if (!isOpen && allGoblinsGone()) {
+            openDoor();
+        }
         
+        if (isOpen && playerTouchesDoor()) {
+            goToNextLevel();
+        }
+    }
+
+    private boolean allGoblinsGone() {
+        return getWorld().getObjects(Goblin.class).isEmpty();
+    }
+
+    private void openDoor() {
+        isOpen = true;
     }
     
+    private boolean playerTouchesDoor(){
+        return isTouching(Elora.class);
+    }
+
+    private void goToNextLevel() {
+        World current = getWorld();
+        
+        if (current instanceof Level1) {
+            Greenfoot.setWorld(new Level2());
+        } else if (current instanceof Level2) {
+            Greenfoot.setWorld(new Level3());
+        } else if (current instanceof Level3) {
+            Greenfoot.setWorld(new Win());
+        }
+    }
 }

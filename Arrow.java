@@ -8,10 +8,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Arrow extends Actor
 {
-    public Arrow(int shootTimer)
+    private int speed;
+    private int damage = 10;
+    private boolean shouldBeRemoved = false;
+    public Arrow(int speed)
     {
-        GreenfootImage image= getImage();
+        this.speed = speed;
+        
+        GreenfootImage image = new GreenfootImage("arrow.png");
+        
         image.scale(image.getWidth() *2, image.getHeight() *2);
+        
+        if (speed < 0){
+            image.mirrorHorizontally();
+        }
+        
         setImage(image);
     }
     
@@ -21,7 +32,29 @@ public class Arrow extends Actor
      */
     public void act()
     {
-        move(20);
+        move(speed);
+        
+        if (shouldBeRemoved) {
+            getWorld().removeObject(this);
+            return;
+        }
+        
+        if(isTouching(Goblin.class)){
+            Goblin goblin = (Goblin) getOneIntersectingObject(Goblin.class);
+            if (goblin != null) {
+                goblin.takeDamage(damage);
+                shouldBeRemoved = true;;
+            }
+        }
+        
+        if(isTouching(Sharruth1.class)){
+            Sharruth1 sharruth1 = (Sharruth1) getOneIntersectingObject(Sharruth1.class);
+            if (sharruth1 != null) {
+                sharruth1.takeDamage(damage);
+                shouldBeRemoved = true;;
+            }
+        }
+        
         if(isAtEdge()) {
             getWorld().removeObject(this);
         }
