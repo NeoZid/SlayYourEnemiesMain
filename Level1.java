@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level1 extends World
 {
-    GreenfootSound gfs_Level1;
+    public static GreenfootSound gfs_Level1 = new GreenfootSound("level1.wav");
     Door door = new Door();
     
     /**
@@ -20,7 +20,6 @@ public class Level1 extends World
     {    
         super(800, 700, 1);
         door.setLocation(36,96);
-        gfs_Level1= new GreenfootSound("level1.wav");
         prepare();
     }
     

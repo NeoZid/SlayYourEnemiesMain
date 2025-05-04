@@ -3,12 +3,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Level2 here.
  * 
- * @author (your name) 
+ * author Neo 
  * @version (a version number or a date)
  */
 public class Level2 extends World
 {
-    private GreenfootSound gfs_level2;
+    public static GreenfootSound gfs_level2 = new GreenfootSound("Level3.wav");
     /**
      * Constructor for objects of class Level2.
      * 
@@ -16,7 +16,6 @@ public class Level2 extends World
     public Level2()
     {    
         super(800, 700, 1); 
-        gfs_level2 = new GreenfootSound("Level3.wav");
         prepare();
     }
     
@@ -76,7 +75,7 @@ public class Level2 extends World
         gfs_level2.playLoop();
     }
     
-     public void stopped()
+    public void stopped()
     {
         gfs_level2.stop();
     }

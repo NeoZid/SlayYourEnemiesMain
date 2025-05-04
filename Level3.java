@@ -4,12 +4,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Lst level in the game, boss battle with Sharruth the dragon to save 
  * princess Rhiannon
  * 
- * @author Neo De Guzman 
+ * @author Gabriela
  * @version 04/10/2025
  */
 public class Level3 extends World
 {
-    private GreenfootSound gameMusic;
+    public static GreenfootSound gfs_Level3 = new GreenfootSound("boss_battle_#2.WAV");
     
     /**
      * 
@@ -17,8 +17,8 @@ public class Level3 extends World
     public Level3()
     {    
         super(800, 500, 1); 
-        gameMusic = new GreenfootSound("boss_battle_#2.WAV"); 
         prepare();
+        
     }
     
     /**
@@ -55,11 +55,13 @@ public class Level3 extends World
         sharruth1.setLocation(483,252);
     }
     
-    public void started(){
-        gameMusic.playLoop();
+    public void started()
+    {
+        gfs_Level3.playLoop();
     }
     
-    public void stopped(){
-        gameMusic.stop();
+    public void stopped()
+    {
+        gfs_Level3.stop();
     }
 }
