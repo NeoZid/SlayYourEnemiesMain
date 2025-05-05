@@ -19,6 +19,7 @@ public class Goblin extends Actor
     
     private int health = 50;
     private int damage = 10;
+    
 
     public Goblin()
     {
@@ -49,23 +50,33 @@ public class Goblin extends Actor
         }
     }
 
+    
     private void moveGoblin()
     {
         if (movingRight) {
             setLocation(getX() + stepSize, getY());
             stepsTaken++;
             if (stepsTaken >= maxSteps) {
-                movingRight = false; 
+                movingRight = false;
+                flipImage();
             }
         } else {
             setLocation(getX() - stepSize, getY());
             stepsTaken--;
             if (stepsTaken <= 0) {
                 movingRight = true;
+                flipImage();
             }
         }
     }
 
+    private void flipImage()
+    {
+        GreenfootImage image = getImage();
+        image.mirrorHorizontally();
+        setImage(image);
+    } 
+    
     private void animateGoblin()
     {
         animationDelay++;
@@ -94,9 +105,6 @@ public class Goblin extends Actor
         if (health <= 0) {
             dropHeal();
             getWorld().removeObject(this);
-            
         }
     }
-
-
 }

@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Lst level in the game, boss battle with Sharruth the dragon to save 
+ * Last level in the game, boss battle with Sharruth the dragon to save 
  * princess Rhiannon
  * 
  * @author Gabriela
@@ -9,17 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level3 extends World
 {
-    
-    
     /**
      * 
      */
     public Level3()
     {    
         super(800, 500, 1); 
-        started();
         prepare();
-        
     }
     
     public void started(){
@@ -77,6 +73,4 @@ public class Level3 extends World
         elora.setLocation(68,390);
         elora.setLocation(54,405);
     }
-    
-   
 }

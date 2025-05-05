@@ -31,6 +31,9 @@ public class Elora extends Actor
     private int pushbackCounter = 0;
     private int pushbackDuration = 10;
     
+    private int weaponTimer = 0;
+    private boolean hasSpecialWeapon = false;
+    
     GreenfootImage eloraAfk = new GreenfootImage("EloraPngAI.png");
     GreenfootImage eloraJump = new GreenfootImage("EloraJumpPngAI.png");
     
@@ -44,12 +47,13 @@ public class Elora extends Actor
         applyGravity();
         checkGround();
         heal();
+        wand();
+        
         if (shootTimer > 0) {
             shootTimer--;
         }
         if (isBeingPushed) {
             applyPushback();
-            
         }
         
         if(spaceKeyDown != Greenfoot.isKeyDown("space")) {
@@ -57,9 +61,7 @@ public class Elora extends Actor
             if (spaceKeyDown) {
                 shoot();
             }
-        }
-        
-        
+        } 
     }
 
     public void move()
@@ -168,6 +170,25 @@ public class Elora extends Actor
         }
     }
     
+    /**
+     * shooting mechanic for lightning ability
+     */
+    public void shootMagic()
+    {
+        if(hasSpecialWeapon == true){
+            if (shootTimer == 0) {
+                int lightningSpeed = facingRight ? 10 : -10;
+                int spawnOffset = facingRight ? 20 : -20;
+        
+        
+                Lightning lightning = new Lightning(lightningSpeed);
+                getWorld().addObject(lightning, getX() + spawnOffset, getY());
+        
+                shootTimer = shootDelay;
+            }
+        }
+    }
+    
     private void heal(){
         ExtraLife extralife = (ExtraLife) getOneIntersectingObject(ExtraLife.class);
         if (extralife != null) {
@@ -178,6 +199,29 @@ public class Elora extends Actor
         }
     }
     
+    /**
+     * method to activate the lightning ability, sets duration of ability to 
+     * the weapon timer
+     */
+    private void activateSpecialWeapon(int duration) 
+    {
+        hasSpecialWeapon = true;
+        weaponTimer = duration;
+    }
+    
+    /**
+     * Allows player to pick up the wand, meant to trigger the lightning 
+     * ability, then remove the wand from the screen once it's picked up
+     */
+    public void wand()
+    {
+        MagicWand wand = (MagicWand) getOneIntersectingObject(MagicWand.class);
+        if(wand != null) {
+           activateSpecialWeapon(25);
+           getWorld().removeObject(wand);
+        }
+    }
+    
     public void transitionToGameOver()
     {
         getWorld().stopped();
@@ -185,6 +229,5 @@ public class Elora extends Actor
         gameOver.started();
         Greenfoot.setWorld(gameOver);
     }
-
 }
 

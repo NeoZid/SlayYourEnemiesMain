@@ -10,6 +10,7 @@ public class Sharruth1 extends Actor
 {
     private int shootTimer = 0;
     private int health = 100;
+    private boolean wandDropped = false;
     
     /**
      * Act - do whatever the Sharruth1 wants to do. This method is called whenever
@@ -72,9 +73,21 @@ public class Sharruth1 extends Actor
     
     public void takeDamage(int amount){
         health -= amount;
+        if(health <= 50 && wandDropped == false) {
+            dropWand();
+        }
+        
         if (health <= 0) {
             getWorld().removeObject(this);
         }
+    }
+    
+    private void dropWand() 
+    {
+        MagicWand wand = new MagicWand();
+        getWorld().addObject(wand, getX(), getY());
+        
+        wandDropped = true;
     }
     
     public void transitionToGameOver()

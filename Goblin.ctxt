@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Goblin
+comment0.text=\r\n\ Goblin\ character\ that\ moves\ back\ and\ forth\ while\ animating\ its\ walking.\r\n
+comment1.params=
+comment1.target=Goblin()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ moveGoblin()
+comment4.params=
+comment4.target=void\ flipImage()
+comment5.params=
+comment5.target=void\ animateGoblin()
+comment6.params=
+comment6.target=void\ dropHeal()
+comment7.params=amount
+comment7.target=void\ takeDamage(int)
+numComments=8

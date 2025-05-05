@@ -7,20 +7,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class HeartAnimated extends Actor
-{
-    GreenfootImage heart1;
-    GreenfootImage heart2;
-    GreenfootImage heart3;
-    GreenfootImage heart4;
-    
-    private int animationDelay = 5;
-    
+{   
+    GreenfootImage heart4; 
+
     public HeartAnimated()
     {
-        heart1 = new GreenfootImage("heart1.png");
-        heart3 = new GreenfootImage("heart3.png");
         heart4 = new GreenfootImage("heart4.png");
-        setImage(heart1);
+        setImage(heart4);
         
     }
     
@@ -30,20 +23,6 @@ public class HeartAnimated extends Actor
      */
     public void act()
     {
-        animateHeart();
-        }
-        
-    public void animateHeart()
-    {
-        animationDelay++;
-        if (animationDelay >= 5) 
-        {
-            if (getImage() == heart1) {
-                setImage(heart3);
-            } else if (getImage() == heart3) {
-                setImage(heart4);
-            } else if(getImage() == heart4)
-                setImage(heart1);
-            }
+        turn(8);
     }
 }
